@@ -10,6 +10,9 @@ def detect_emotions():
 
     response = emotion_detector(statement)
 
+    if response['dominant_emotion'] is None:
+        return jsonify({"error": "Invalid text! Please try again."}), 400
+
     anger = response["anger"]
     disgust = response["disgust"]
     fear = response["fear"]
