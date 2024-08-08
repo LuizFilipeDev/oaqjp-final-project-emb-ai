@@ -2,7 +2,15 @@ import requests
 import json
 
 def emotion_detector(text_to_analyze):
+    """
+    Endpoint to detect emotions from a given statement.
 
+    Expects a JSON body with a 'text_to_analyze' field. Returns a response with detected emotions
+    and the dominant emotion. If the text_to_analyze is blank, returns an empty object.
+
+    Returns:
+        Response object.
+    """
     if not text_to_analyze or text_to_analyze.strip() == "":
         return {
             "anger": None,

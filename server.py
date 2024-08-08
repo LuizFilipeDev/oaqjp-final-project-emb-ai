@@ -1,3 +1,19 @@
+"""
+server.py
+
+This module provides a Flask web server with an endpoint to detect emotions from a given statement.
+It includes error handling for blank entries and formats the response to include emotion scores and 
+the dominant emotion. The server listens on localhost:5000.
+
+Modules:
+    - Flask: Web framework for creating the server.
+    - EmotionDetection: Custom package for emotion detection.
+
+Endpoints:
+    - POST /emotionDetector: Accepts a JSON body with a 'statement' field and returns the detected 
+      emotions or an error message if the statement is blank.
+"""
+
 from flask import Flask, request, jsonify
 from EmotionDetection import emotion_detector
 
@@ -5,6 +21,15 @@ app = Flask(__name__)
 
 @app.route('/emotionDetector', methods=['POST'])
 def detect_emotions():
+    """
+    Endpoint to detect emotions from a given statement.
+
+    Expects a JSON body with a 'statement' field. Returns a response with detected emotions
+    and the dominant emotion. If the statement is blank, returns an error message.
+
+    Returns:
+        Response object with JSON containing the formatted response or an error message.
+    """
     data = request.json
     statement = data.get('statement')
 
